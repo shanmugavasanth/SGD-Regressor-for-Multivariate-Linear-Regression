@@ -91,6 +91,7 @@ print("\nPredictions:\n", Y_pred[:5])
 ```
 
 ## Output:
+![image](https://github.com/user-attachments/assets/c48b5e02-bf41-409a-a7cd-358fcbcf21a0)
 
 
 ## Result:
