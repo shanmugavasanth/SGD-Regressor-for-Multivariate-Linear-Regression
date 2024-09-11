@@ -54,19 +54,39 @@ X_test = scaler_X.transform(X_test)
 Y_train = scaler_Y.fit_transform(Y_train)
 Y_test = scaler_Y.transform(Y_test)
 print(X_train)
+# Initialize the SGDRegressor
+sgd = SGDRegressor(max_iter=1000, tol=1e-3)
 
-sgd = SGDRegressor(max_iter=1000, tol=1e-3)
+# Use MultiOutputRegressor to handle multiple output variables
 multi_output_sgd = MultiOutputRegressor(sgd)
+
+# Train the model
 multi_output_sgd.fit(X_train, Y_train)
+
+# Predict on the test data
 Y_pred = multi_output_sgd.predict(X_test)
+
+# Initialize the SGDRegressor
 sgd = SGDRegressor(max_iter=1000, tol=1e-3)
+
+# Use MultiOutputRegressor to handle multiple output variables
 multi_output_sgd = MultiOutputRegressor(sgd)
+
+# Train the model
 multi_output_sgd.fit(X_train, Y_train)
+
+# Predict on the test data
 Y_pred = multi_output_sgd.predict(X_test)
+
+# Inverse transform the predictions to get them back to the original scale
 Y_pred = scaler_Y.inverse_transform(Y_pred)
 Y_test = scaler_Y.inverse_transform(Y_test)
+
+# Evaluate the model using Mean Squared Error
 mse = mean_squared_error(Y_test, Y_pred)
 print("Mean Squared Error:", mse)
+
+# Optionally, print some predictions
 print("\nPredictions:\n", Y_pred[:5])
 ```
 
